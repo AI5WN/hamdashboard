@@ -34,6 +34,7 @@ var aURL = [
   ["00a5ad", "NAVARRE FL", "pacu_navarre.js"],
   ["e8a03c", "NEWS/WX", "pacu_news.js"],
   ["e8a03c", "FUNNY TV", "pacu_funny.js"],
+  ["e8a03c", "CARINI", "pacu_carini.js"],
 
   ["9C27B0", "JELLY CAM", "https://www.youtube.com/embed/m1XcdxjVGos?autoplay=1&mute=1&playsinline=1&rel=0", "1"],
 
