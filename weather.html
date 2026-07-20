@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Local time + NWS weather panel tile" />
+  <title>Local Time &amp; Weather</title>
+  <!--
+    weather.html - embeddable local time + weather tile
+    Part of the St. Francis PACU dashboard (built on the hamdash engine)
+
+    Usage (as an iframe tile):
+      weather.html?name=Maui,%20HI&lat=20.7984&lon=-156.3319&tz=Pacific/Honolulu
+    Optional:
+      &station=PHOG   (NWS observation station; auto-resolved from lat/lon when omitted)
+
+    Data: api.weather.gov (no API key). Clock is always 24-hour (military) time.
+  -->
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌤️</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- media="print" + onload swap keeps the font fetch from blocking the page
+       (locked-down networks can stall this request indefinitely) -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300..700&display=swap" rel="stylesheet"
+    media="print" onload="this.media='all'" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+      background: #10161d;
+      color: #eef3f8;
+      font-family: "Roboto Condensed", sans-serif;
+      overflow: hidden;
+    }
+
+    .panel {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      height: 100%;
+      width: 100%;
+    }
+
+    .clock-side {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 1vh;
+      border-right: 1px solid #2a3542;
+      background: linear-gradient(160deg, #131c26 0%, #0d1319 100%);
+      padding: 2vh 1vw;
+      text-align: center;
+    }
+
+    .loc-name {
+      font-size: 6.5vh;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #7fd4ff;
+    }
+
+    .clock {
+      font-size: 17vh;
+      font-weight: 700;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.04em;
+    }
+
+    .clock .secs {
+      font-size: 0.45em;
+      color: #8fa3b8;
+      vertical-align: baseline;
+    }
+
+    .the-date {
+      font-size: 5.5vh;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      color: #cfdcea;
+      text-transform: uppercase;
+    }
+
+    .tz-label {
+      font-size: 3.2vh;
+      color: #6d8296;
+      letter-spacing: 0.15em;
+    }
+
+    .wx-side {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2vh 2vw;
+      gap: 1.5vh;
+    }
+
+    .current {
+      display: flex;
+      align-items: center;
+      gap: 1.5vw;
+    }
+
+    .temp-now {
+      font-size: 15vh;
+      font-weight: 700;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .cond-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6vh;
+    }
+
+    .cond-text {
+      font-size: 5vh;
+      font-weight: 400;
+      color: #dfe9f2;
+    }
+
+    .cond-detail {
+      font-size: 3.4vh;
+      color: #8fa3b8;
+    }
+
+    .forecast {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.6vw;
+      margin-top: 1vh;
+    }
+
+    .fc-cell {
+      background: #18222d;
+      border: 1px solid #263241;
+      border-radius: 0.8vh;
+      padding: 1.2vh 0.5vw;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5vh;
+    }
+
+    .fc-name {
+      font-size: 2.7vh;
+      font-weight: 700;
+      color: #7fd4ff;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .fc-temp {
+      font-size: 4.6vh;
+      font-weight: 700;
+    }
+
+    .fc-temp.night {
+      color: #9db4ca;
+    }
+
+    .fc-short {
+      font-size: 2.4vh;
+      color: #93a7bb;
+      line-height: 1.15;
+    }
+
+    .updated {
+      font-size: 2.2vh;
+      color: #55697d;
+      text-align: right;
+    }
+
+    .err {
+      color: #e8a03c;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="panel">
+    <div class="clock-side">
+      <div class="loc-name" id="locName">&nbsp;</div>
+      <div class="clock" id="clock">--:--<span class="secs">--</span></div>
+      <div class="the-date" id="theDate">&nbsp;</div>
+      <div class="tz-label" id="tzLabel">&nbsp;</div>
+    </div>
+    <div class="wx-side">
+      <div class="current">
+        <div class="temp-now" id="tempNow">--°</div>
+        <div class="cond-block">
+          <div class="cond-text" id="condText">Loading weather…</div>
+          <div class="cond-detail" id="condDetail">&nbsp;</div>
+        </div>
+      </div>
+      <div class="forecast" id="forecast"></div>
+      <div class="updated" id="updated">&nbsp;</div>
+    </div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const locName = params.get("name") || "Local";
+    const lat = parseFloat(params.get("lat"));
+    const lon = parseFloat(params.get("lon"));
+    const tz = params.get("tz") || Intl.DateTimeFormat().resolvedOptions().timeZone;
+    let stationId = params.get("station") || null;
+
+    document.getElementById("locName").textContent = locName;
+
+    // ---------- Clock (always 24-hour / military time) ----------
+    function pad(n) { return String(n).padStart(2, "0"); }
+
+    function updateClock() {
+      const now = new Date();
+      let parts;
+      try {
+        parts = new Intl.DateTimeFormat("en-US", {
+          timeZone: tz, hour12: false,
+          weekday: "short", day: "2-digit", month: "short", year: "numeric",
+          hour: "2-digit", minute: "2-digit", second: "2-digit",
+          timeZoneName: "short",
+        }).formatToParts(now).reduce((acc, p) => (acc[p.type] = p.value, acc), {});
+      } catch (e) {
+        document.getElementById("tzLabel").textContent = "Bad tz: " + tz;
+        return;
+      }
+      // Intl can emit "24" for midnight with hour12:false in some engines
+      const hour = parts.hour === "24" ? "00" : parts.hour;
+      document.getElementById("clock").innerHTML =
+        `${hour}:${parts.minute}<span class="secs">:${parts.second}</span>`;
+      document.getElementById("theDate").textContent =
+        `${parts.weekday} ${parts.day} ${parts.month} ${parts.year}`.toUpperCase();
+      document.getElementById("tzLabel").textContent = parts.timeZoneName || tz;
+    }
+    updateClock();
+    setInterval(updateClock, 250);
+
+    // ---------- Weather (api.weather.gov, CORS-open, no key) ----------
+    const NWS_HEADERS = { "Accept": "application/geo+json" };
+    let forecastUrl = null;
+
+    function cToF(c) { return Math.round((c * 9) / 5 + 32); }
+    function kmhToMph(k) { return Math.round(k * 0.621371); }
+
+    async function nwsFetch(url) {
+      const r = await fetch(url, { headers: NWS_HEADERS, cache: "no-cache" });
+      if (!r.ok) throw new Error("HTTP " + r.status + " for " + url);
+      return r.json();
+    }
+
+    async function resolvePoint() {
+      if (isNaN(lat) || isNaN(lon)) throw new Error("Missing lat/lon parameters");
+      const pt = await nwsFetch(`https://api.weather.gov/points/${lat.toFixed(4)},${lon.toFixed(4)}`);
+      forecastUrl = pt.properties.forecast;
+      if (!stationId) {
+        const st = await nwsFetch(pt.properties.observationStations);
+        if (st.features && st.features.length) {
+          stationId = st.features[0].properties.stationIdentifier;
+        }
+      }
+    }
+
+    async function updateObservation() {
+      if (!stationId) return;
+      const obs = await nwsFetch(`https://api.weather.gov/stations/${stationId}/observations/latest`);
+      const p = obs.properties;
+      const tempEl = document.getElementById("tempNow");
+      if (p.temperature && p.temperature.value !== null) {
+        tempEl.textContent = cToF(p.temperature.value) + "°F";
+      }
+      document.getElementById("condText").textContent = p.textDescription || "—";
+      const bits = [];
+      if (p.windSpeed && p.windSpeed.value !== null && p.windSpeed.value > 0) {
+        bits.push("Wind " + kmhToMph(p.windSpeed.value) + " mph");
+      }
+      if (p.relativeHumidity && p.relativeHumidity.value !== null) {
+        bits.push("Hum " + Math.round(p.relativeHumidity.value) + "%");
+      }
+      document.getElementById("condDetail").textContent = bits.join("  •  ") || " ";
+      document.getElementById("updated").textContent =
+        "NWS " + stationId + " • updated " + new Date().toLocaleTimeString("en-US", { hour12: false, timeZone: tz, hour: "2-digit", minute: "2-digit" });
+    }
+
+    async function updateForecast() {
+      if (!forecastUrl) return;
+      const fc = await nwsFetch(forecastUrl);
+      const periods = (fc.properties.periods || []).slice(0, 4);
+      const box = document.getElementById("forecast");
+      box.innerHTML = "";
+      periods.forEach((pd) => {
+        const cell = document.createElement("div");
+        cell.className = "fc-cell";
+        const nm = document.createElement("div");
+        nm.className = "fc-name";
+        nm.textContent = pd.name;
+        const tp = document.createElement("div");
+        tp.className = "fc-temp" + (pd.isDaytime ? "" : " night");
+        tp.textContent = pd.temperature + "°" + (pd.temperatureUnit || "F");
+        const sh = document.createElement("div");
+        sh.className = "fc-short";
+        sh.textContent = pd.shortForecast;
+        cell.appendChild(nm);
+        cell.appendChild(tp);
+        cell.appendChild(sh);
+        box.appendChild(cell);
+      });
+    }
+
+    async function refreshWeather() {
+      try {
+        if (!forecastUrl) await resolvePoint();
+        await Promise.allSettled([updateObservation(), updateForecast()]);
+      } catch (e) {
+        console.error(e);
+        const ct = document.getElementById("condText");
+        ct.textContent = "Weather unavailable";
+        ct.classList.add("err");
+        forecastUrl = null; // force full re-resolve next cycle
+      }
+    }
+
+    refreshWeather();
+    setInterval(refreshWeather, 10 * 60 * 1000);  // observations + forecast every 10 min
+  </script>
+</body>
+
+</html>
