@@ -4,6 +4,10 @@ const disableSetup = false;
 const disableLdCfg = true;
 var topBarCenterText = "St. Francis PACU - Estes Park / RMNP";
 
+// Show the PACU staffing strip here too (same board as the main page;
+// entries are shared browser-wide and editable from any page)
+var showStaffBar = true;
+
 // Grid layout desired
 var layout_cols = 3;
 var layout_rows = 2;

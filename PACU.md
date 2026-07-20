@@ -18,7 +18,7 @@ the file directly works, same as hamdash.)
 - Right: live outside temperature + conditions (NWS Tulsa Intl, station `KTUL`,
   refreshes every 10 minutes, no API key needed)
 
-**Staffing strip** (second banner row, main page only)
+**Staffing strip** (second banner row, on the main page and all location pages)
 - CHARGE, TECHS (auto-counted), ANESTHESIA (auto-counted), CENSUS
 - Click **✎ EDIT** to update names/extensions each shift. Entries are saved in
   that TV's browser (localStorage) — no files to edit, and each TV keeps its
