@@ -25,8 +25,8 @@ the file directly works, same as hamdash.)
   own board until it's changed again.
 
 **Main grid (3×2 live cams)**
-1. Sea otters — Monterey Bay Aquarium (right-click the tile for the Vancouver
-   Aquarium alternate)
+1. Sea otters — Monterey Bay Aquarium (right-click the tile to cycle through
+   a second Monterey stream and two Vancouver Aquarium cams if one is down)
 2. Brooks Falls brown bears, Katmai NP — salmon season (July–Sept)
 3. Big Bear bald eagle nest (Jackie & Shadow)
 4. Giant pandas — explore.org Wolong Grove (right-click for iPanda 24/7)
