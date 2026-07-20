@@ -36,6 +36,12 @@ the file directly works, same as hamdash.)
 **Bottom ticker** — NWS active weather alerts for Oklahoma, fetched straight
 from api.weather.gov. Shows "No active weather alerts" when quiet.
 
+**Announcements ticker** — a red strip above the weather ticker that scrolls
+unit alerts (e.g. "⚠ OUT OF FENTANYL") on every page. Add or clear messages
+in the ✎ EDIT panel's Announcements field — separate multiple messages with
+`;`, leave it blank to hide the strip. Like the staffing board, announcements
+are per-TV (saved in that browser).
+
 **Menu buttons** (slide out from the screen edges)
 - Left: **MAUI**, **ESTES PARK**, **PENSACOLA** — the getaway pages — plus a
   full-screen **JELLY CAM**

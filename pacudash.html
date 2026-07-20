@@ -262,6 +262,32 @@ db   8D    88       88    88booo. 88.     db   8D
       font-size: 15px;
     }
 
+    /* Announcements ticker (unit alerts like "out of fentanyl") — sits just
+       above the weather-alert ticker, hidden when there are no announcements */
+    .announce-bar {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: rgba(150, 20, 20, 0.92);
+      color: #ffe08a;
+      overflow: hidden;
+      white-space: nowrap;
+      box-sizing: border-box;
+      padding: 4px 0;
+      font-family: "Roboto Condensed", sans-serif;
+      font-size: 2.4vh;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      z-index: 2;
+    }
+
+    .announce-content {
+      display: inline-block;
+      padding-left: 100%;
+      animation: ticker var(--announce-duration, 30s) linear infinite;
+    }
+
     /* Default variables values for grid layout 4 cols x 3 rows */
     :root {
       --main-layout: auto auto auto auto;
@@ -2503,6 +2529,7 @@ var tileDelay = ${JSON.stringify(settings.aImages.map(item => item[2]), null, 2)
         document.getElementById("staffBar").style.display = "grid";
         renderStaffBar();
       }
+      renderAnnounceBar();
       startOutsideTemp();
 
       setRot();
@@ -2619,12 +2646,37 @@ var tileDelay = ${JSON.stringify(settings.aImages.map(item => item[2]), null, 2)
       document.getElementById("staffAnesLabel").textContent = nAnes ? `ANESTHESIA (${nAnes})` : "ANESTHESIA";
     }
 
+    // Announcements ticker: shows any messages saved in the board editor,
+    // scrolling above the weather-alert ticker. Hidden when empty.
+    function renderAnnounceBar() {
+      const info = getStaffInfo();
+      const bar = document.getElementById("announceBar");
+      const content = document.getElementById("announceContent");
+      const text = (info.announce || "").trim();
+      if (!text) {
+        bar.style.display = "none";
+        return;
+      }
+      const items = text.split(";").map(s => s.trim()).filter(s => s.length > 0);
+      content.textContent = items.map(t => "⚠ " + t.toUpperCase()).join("     ");
+      bar.style.display = "block";
+      // Stack above the RSS/weather ticker when one is present
+      const rss = document.getElementById("rss-ticker");
+      bar.style.bottom = rss ? rss.offsetHeight + "px" : "0px";
+      // Constant scroll speed regardless of message length (~140 px/s)
+      requestAnimationFrame(() => {
+        const duration = (content.scrollWidth + bar.offsetWidth) / 140;
+        content.style.setProperty("--announce-duration", duration + "s");
+      });
+    }
+
     function openStaffEditor() {
       const info = getStaffInfo();
       document.getElementById("editCharge").value = info.charge || "";
       document.getElementById("editTechs").value = info.techs || "";
       document.getElementById("editAnes").value = info.anes || "";
       document.getElementById("editCensus").value = info.census || "";
+      document.getElementById("editAnnounce").value = info.announce || "";
       document.getElementById("staffEditor").style.display = "flex";
     }
 
@@ -2638,10 +2690,12 @@ var tileDelay = ${JSON.stringify(settings.aImages.map(item => item[2]), null, 2)
         techs: document.getElementById("editTechs").value.trim(),
         anes: document.getElementById("editAnes").value.trim(),
         census: document.getElementById("editCensus").value.trim(),
+        announce: document.getElementById("editAnnounce").value.trim(),
         updated: new Date().toISOString(),
       };
       localStorage.setItem(STAFF_KEY, JSON.stringify(info));
       renderStaffBar();
+      renderAnnounceBar();
       closeStaffEditor();
     }
   </script>
@@ -2795,6 +2849,11 @@ Y8888P'  `Y88P'  Y8888D'    YP
     </div>
   </div>
 
+  <!-- Announcements ticker -->
+  <div id="announceBar" class="announce-bar">
+    <div id="announceContent" class="announce-content"></div>
+  </div>
+
   <!-- PACU staffing editor -->
   <div id="staffEditor" class="staff-editor">
     <div class="staff-editor-content">
@@ -2807,6 +2866,9 @@ Y8888P'  `Y88P'  Y8888D'    YP
       <input type="text" id="editAnes" placeholder="Dr. Kim x5500, CRNA Park x5501" />
       <label for="editCensus">Census / Rooms Running <span class="hint">(free text, e.g. 8 pts • 12 ORs)</span></label>
       <input type="text" id="editCensus" placeholder="8 pts • 12 ORs" />
+      <label for="editAnnounce">Announcements <span class="hint">(scrolls along the bottom of every page;
+          separate messages with ; — leave blank to hide the banner)</span></label>
+      <input type="text" id="editAnnounce" placeholder="Out of fentanyl; Pyxis down for maintenance 1400-1500" />
       <div class="staff-editor-actions">
         <button onclick="closeStaffEditor()">Cancel</button>
         <button onclick="saveStaffInfo()">Save</button>
