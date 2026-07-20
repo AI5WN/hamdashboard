@@ -1,6 +1,6 @@
 const disableSetup = false;
 const disableLdCfg = false;
-var topBarCenterText = `AI5WN - EM26eh`;
+var topBarCenterText = `AI5WN - EM26eg`;
 
 // Grid layout
 var layout_cols = 4;
