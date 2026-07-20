@@ -65,6 +65,7 @@ webcams:
 | Navarre Beach | `pacu_navarre.js` | Navarre Pier (2 streams), Navarre Beach Life 4K, Pensacola Beach, Mobile radar/NHC, GOES-19 |
 | News/WX | `pacu_news.js` | KJRH 2 News live, Windy interactive radar, OK warnings map/SPC outlook, ODOT traffic map, KJRH tower cams |
 | Funny TV | `pacu_funny.js` | 2×2 big tiles: AFV uploads, Totally Funny Animals, FailArmy pet fails, Best-of-FailArmy loop (auto-advancing playlists) |
+| Carini | `pacu_carini.js` | 2×2 big tiles of looping BJJ technique playlists: Chewjitsu, Gracie Breakdown, Jordan Teaches Jiujitsu, Jiu-Jitsu Channel |
 
 **BACK** (either edge) returns to the main PACU screen. Pages stay put until
 someone navigates away (no auto-return).
