@@ -1,6 +1,6 @@
 // CUT START
 // const disableSetup = true;
-var topBarCenterText = "Satellite Dashboard";
+var topBarCenterText = "AI5WN - Oklahoma Weather";
 
 // Grid layout desired
 var layout_cols = 2;
@@ -10,39 +10,39 @@ var layout_rows = 2;
 // Structure is as follows HTML Color code, Option, target URL, scaling 1=Original Size, side (optional, nothing is Left, "R" is Right)
 // The values are [color code, menu text, target link, scale factor, side],
 // add new lines following the structure for extra menu options. The comma at the end is important!
-var aURL = [  
+var aURL = [
   [
     "2196F3",
     "LIGHTNING",
-    "https://map.blitzortung.org/#3.87/36.5/-89.41",
+    "https://map.blitzortung.org/#7/36.31/-95.62",
     "1",
     "R",
   ],
   [
     "2196F3",
     "RADAR",
-    "https://weather.gc.ca/?layers=alert,radar&center=43.39961001,-78.53212031&zoom=6&alertTableFilterProv=ON",
+    "https://radar.weather.gov/station/KINX/standard",
     "1",
     "R",
   ],
   [
     "2196F3",
     "WEATHER",
-    "https://openweathermap.org/weathermap?basemap=map&cities=true&layer=temperature&lat=44.0157&lon=-79.4591&zoom=5",
+    "https://openweathermap.org/weathermap?basemap=map&cities=true&layer=temperature&lat=36.3126&lon=-95.6161&zoom=6",
     "1",
     "R",
   ],
   [
     "2196F3",
     "WINDS",
-    "https://earth.nullschool.net/#current/wind/surface/level/orthographic=-78.79,44.09,3000",
+    "https://earth.nullschool.net/#current/wind/surface/level/orthographic=-95.62,36.31,3000",
     "1",
     "R",
   ],
   [
     "2196F3",
     "WINDY",
-    "https://embed.windy.com/embed2.html?lat=44.01&lon=-79.45&width=900&detailLat=44.01&detailLon=-79.45&height=600&zoom=8&level=surface&overlay=clouds&product=ecmwf&menu=&message=&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=true&metricWind=km%2Fh&metricTemp=%C2%B0C&radarRange=-1",
+    "https://embed.windy.com/embed2.html?lat=36.29&lon=-95.62&width=900&detailLat=36.29&detailLon=-95.62&height=600&zoom=8&level=surface&overlay=clouds&product=ecmwf&menu=&message=&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=true&metricWind=mph&metricTemp=%C2%B0F&radarRange=-1",
     "1",
     "R"
   ]
@@ -52,26 +52,24 @@ var aURL = [
 // Structure is Title, Image Source URL
 // [Title, Image Source URL],
 // the comma at the end is important!
-// You can't add more items because there are only 12 placeholders on the dashboard
-// but you can replace the titles and the images with anything you want.
 var currentDate = new Date();
 var aIMG = [
   // 1
-  ["Radar NA", "https://radar.weather.gov/ridge/standard/CONUS-LARGE_loop.gif", "https://radar.weather.gov/ridge/standard/CONUS_loop.gif"],
+  ["TULSA RADAR (KINX)", "https://radar.weather.gov/ridge/standard/KINX_loop.gif"],
   // 2
   [
-    "Radar Local",
-    "https://s.w-x.co/staticmaps/wu/wxtype/county_loc/bgm/animate.png",
+    "GOES-19 SOUTHERN PLAINS",
+    "https://cdn.star.nesdis.noaa.gov/GOES19/ABI/SECTOR/sp/GEOCOLOR/GOES19-SP-GEOCOLOR-600x600.gif",
   ],
   // 3
   [
-    "Satellite NA (inverted)",
-    "invert|https://cdn.star.nesdis.noaa.gov/GOES16/ABI/SECTOR/can/GEOCOLOR/GOES16-CAN-GEOCOLOR-1125x560.gif",
+    "GOES-19 LIGHTNING (S. PLAINS)",
+    "https://cdn.star.nesdis.noaa.gov/GOES19/GLM/SECTOR/sp/EXTENT3/GOES19-SP-EXTENT3-600x600.gif",
   ],
   // 4
   [
-    "Satellite Local (inverted)",
-    "invert|https://cdn.star.nesdis.noaa.gov/GOES16/GLM/SECTOR/cgl/EXTENT3/GOES16-CGL-EXTENT3-600x600.gif",
+    "SPC DAY 1 SEVERE OUTLOOK",
+    "https://www.spc.noaa.gov/partners/outlooks/national/swody1.png",
   ],
 ];
 
@@ -81,7 +79,7 @@ var tileDelay = [
 ];
 
 var aRSS = [
-  ["https://weather.gc.ca/rss/battleboard/onrm28_e.xml", 60],
+  ["https://api.weather.gov/alerts/active.atom?area=OK", 30],
 ];
 
 // CUT END

@@ -11,9 +11,15 @@ var layout_rows = 3;
 // The values are [color code, menu text, target link, scale factor, side],
 // add new lines following the structure for extra menu options. The comma at the end is important!
 var aURL = [
-  ["f3de21", "SATS", "satellite.js"],
-
+  ["f3de21", "OK WX", "satellite.js"],
+  ["f3de21", "MAUI", "maui.js"],
   ["f3de21", "HAMCLOCK", "newtab|https://openhamclock.com/", "1"],
+
+  ["4CAF50", "APRS", "https://aprs.fi/#!mt=roadmap&z=11&lat=36.2893&lng=-95.6234", "1"],
+  ["4CAF50", "POTA", "newtab|https://pota.app/#/map", "1"],
+  ["4CAF50", "NETLOGGER", "https://www.netlogger.org/", "1"],
+  ["9C27B0", "RCWA", "https://www.rcwa.org/", "1", "R"],
+  ["9C27B0", "LICW", "https://longislandcwclub.org/", "1", "R"],
 
   ["2196F3", "CLUBLOG", "https://clublog.org/livestream/AI5WN", "1.7"],
   [
@@ -103,7 +109,11 @@ var aIMG = [
     "PLANES OVER TULSA",
     "iframe|https://globe.adsbexchange.com/?airport=TUL",
   ],
-  ["SPACE WEATHER 3-DAY", "https://services.swpc.noaa.gov/images/swx-overview-large.gif"],
+  [
+    ["SPACE WEATHER 3-DAY", "AURORA FORECAST"],
+    "https://services.swpc.noaa.gov/images/swx-overview-large.gif",
+    "https://services.swpc.noaa.gov/images/animations/ovation/north/latest.jpg",
+  ],
   ["HF PROPAGATION",
     "https://www.hamqsl.com/solar101vhf.php"],
 ];
