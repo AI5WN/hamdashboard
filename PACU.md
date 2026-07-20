@@ -43,8 +43,8 @@ in the ✎ EDIT panel's Announcements field — separate multiple messages with
 are per-TV (saved in that browser).
 
 **Menu buttons** (slide out from the screen edges)
-- Left: **MAUI**, **ESTES PARK**, **PENSACOLA** — the getaway pages — plus a
-  full-screen **JELLY CAM**
+- Left: **MAUI**, **ESTES PARK**, **PENSACOLA**, **CLEARWATER OR**,
+  **NAVARRE FL** — the getaway pages — plus a full-screen **JELLY CAM**
 - Right: Tulsa radar, regional weather map, and the standard engine options
   (BACK, Refresh, Setup, Sources)
 
@@ -59,6 +59,8 @@ webcams:
 | Maui | `pacu_maui.js` | Ka'anapali, Napili Bay, Wailea, Molokai radar, GOES-18 |
 | Estes Park | `pacu_estes.js` | Longs Peak, Alpine Visitor Center, Beaver Meadows, Glacier Basin, Denver radar/GOES |
 | Pensacola | `pacu_pcola.js` | 3 Pensacola Beach cams, Navarre Pier, Mobile radar/NHC outlook/GOES |
+| Clearwater OR | `pacu_clearwater.js` | Clearwater Restaurant sea lion cam (Newport, OR), OSU Port Dock 1 cam, Pacific winds, Portland radar, GOES-18 |
+| Navarre Beach | `pacu_navarre.js` | Navarre Pier (2 streams), Navarre Beach Life 4K, Pensacola Beach, Mobile radar/NHC, GOES-19 |
 
 **BACK** (either edge) returns to the main PACU screen. Pages stay put until
 someone navigates away (no auto-return).
