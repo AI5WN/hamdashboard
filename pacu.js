@@ -52,11 +52,19 @@ var aURL = [
 // Dashboard tiles (3 cols x 2 rows = 6 tiles)
 // [Title or [rotating titles], URL1, URL2, ...] - "iframe|" embeds a website
 var aIMG = [
-  // 1 - Sea otters (Monterey primary; Vancouver alternate - right-click to flip)
+  // 1 - Sea otters (Monterey primary; right-click to flip through the
+  //     alternates if the current stream shows "not available")
   [
-    ["SEA OTTERS - MONTEREY BAY", "SEA OTTERS - VANCOUVER AQUARIUM"],
-    "iframe|https://www.youtube.com/embed/WrKZzs-CB_8?autoplay=1&mute=1&playsinline=1&rel=0",
-    "iframe|https://www.youtube.com/embed/2R034rQ9gtQ?autoplay=1&mute=1&playsinline=1&rel=0",
+    [
+      "SEA OTTERS - MONTEREY BAY",
+      "SEA OTTERS - MONTEREY BAY (ALT)",
+      "SEA OTTERS - VANCOUVER AQUARIUM",
+      "SEA OTTERS - VANCOUVER CAM 2",
+    ],
+    "iframe|https://www.youtube.com/embed/abbR-Ttd-cA?autoplay=1&mute=1&playsinline=1&rel=0",
+    "iframe|https://www.youtube.com/embed/LrO-tgqYXXI?autoplay=1&mute=1&playsinline=1&rel=0",
+    "iframe|https://www.youtube.com/embed/9mg9PoFEX2U?autoplay=1&mute=1&playsinline=1&rel=0",
+    "iframe|https://www.youtube.com/embed/_KXHUb0wFRE?autoplay=1&mute=1&playsinline=1&rel=0",
   ],
   // 2 - Brooks Falls brown bears, Katmai NP (salmon season Jul-Sep)
   [
