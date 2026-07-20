@@ -92,7 +92,13 @@ var aIMG = [
     "LIGHTNING OK",
     "iframe|https://map.blitzortung.org/#7/36.31/-95.62",
   ],
-  ["TULSA LIVE CAM", "iframe|https://www.youtube.com/embed/e2ZyeZPTbU0?autoplay=1&mute=1"],
+  [
+    ["OWASSO CAM (KJRH)", "DOWNTOWN TULSA CAM", "TULSA AIRPORT CAM", "GRAND LAKE DAM CAM"],
+    "https://mediaassets.kjrh.com/weatherimages/OWASSO_CAM.jpg",
+    "https://mediaassets.kjrh.com/weatherimages/DOWNTOWN_CAM.jpg",
+    "https://mediaassets.kjrh.com/weatherimages/AIRPORT_CAM.jpg",
+    "https://mediaassets.kjrh.com/weatherimages/PENSACOLA_DAM%20CAM.jpg",
+  ],
   [
     "PLANES OVER TULSA",
     "iframe|https://globe.adsbexchange.com/?airport=TUL",
