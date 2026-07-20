@@ -1,6 +1,6 @@
 const disableSetup = false;
 const disableLdCfg = false;
-var topBarCenterText = `VA3HDL - FN04ga - .js`;
+var topBarCenterText = `AI5WN - EM26eh`;
 
 // Grid layout
 var layout_cols = 4;
@@ -12,8 +12,10 @@ var layout_rows = 3;
 // add new lines following the structure for extra menu options. The comma at the end is important!
 var aURL = [
   ["f3de21", "SATS", "satellite.js"],
-  
-  ["2196F3", "CLUBLOG", "https://clublog.org/livestream/VA3HDL", "1.7"],
+
+  ["f3de21", "HAMCLOCK", "https://openhamclock.com/", "1"],
+
+  ["2196F3", "CLUBLOG", "https://clublog.org/livestream/AI5WN", "1.7"],
   [
     "2196F3",
     "CONTEST",
@@ -24,7 +26,7 @@ var aURL = [
   [
     "2196F3",
     "LIGHTNING",
-    "https://map.blitzortung.org/#3.87/36.5/-89.41",
+    "https://map.blitzortung.org/#7/36.31/-95.62",
     "1",
     "R",
   ],
@@ -32,7 +34,7 @@ var aURL = [
   [
     "2196F3",
     "RADAR",
-    "dark|https://weather.gc.ca/?layers=alert,radar&center=43.39961001,-78.53212031&zoom=6&alertTableFilterProv=ON",
+    "https://radar.weather.gov/station/KINX/standard",
     "1",
     "R"
   ],
@@ -40,14 +42,14 @@ var aURL = [
   [
     "2196F3",
     "WEATHER",
-    "https://openweathermap.org/weathermap?basemap=map&cities=true&layer=temperature&lat=44.0157&lon=-79.4591&zoom=5",
+    "https://openweathermap.org/weathermap?basemap=map&cities=true&layer=temperature&lat=36.3126&lon=-95.6161&zoom=6",
     "1",
     "R",
   ],
   [
     "2196F3",
     "WINDS",
-    "https://earth.nullschool.net/#current/wind/surface/level/orthographic=-78.79,44.09,3000",
+    "https://earth.nullschool.net/#current/wind/surface/level/orthographic=-95.62,36.31,3000",
     "1",
     "R",
   ],
@@ -62,37 +64,37 @@ var aURL = [
 var aIMG = [
   [["Radar CONUS", "Radar Small"], "https://radar.weather.gov/ridge/standard/CONUS-LARGE_loop.gif", "https://radar.weather.gov/ridge/standard/CONUS_loop.gif"],
   [
-    "LOCAL RADAR (inverted)",
-    "invert|https://radar.weather.gov/ridge/standard/KNQA_loop.gif",
+    "TULSA RADAR (inverted)",
+    "invert|https://radar.weather.gov/ridge/standard/KINX_loop.gif",
   ],
   [
-    "NOAA D-RAP (inverted)",
-    "invert|https://s.w-x.co/staticmaps/wu/wxtype/county_loc/bgm/animate.png",
+    "MUF MAP (KC2G)",
+    "https://prop.kc2g.com/renders/current/mufd-normal-now.svg",
   ],
   [
     "ISS POSITION",
     "https://www.heavens-above.com/orbitdisplay.aspx?icon=iss&width=600&height=300&mode=M&satid=25544",
   ],
   [
-    "SATELLITE CAN",
-    "https://cdn.star.nesdis.noaa.gov/GOES16/GLM/SECTOR/can/EXTENT3/GOES16-CAN-EXTENT3-1125x560.gif",
+    "GOES S. PLAINS",
+    "https://cdn.star.nesdis.noaa.gov/GOES19/ABI/SECTOR/sp/GEOCOLOR/GOES19-SP-GEOCOLOR-600x600.gif",
   ],
   [
-    "SATELLITE CGL",
-    "https://cdn.star.nesdis.noaa.gov/GOES16/GLM/SECTOR/cgl/EXTENT3/GOES16-CGL-EXTENT3-600x600.gif",
+    "GOES CONUS",
+    "https://cdn.star.nesdis.noaa.gov/GOES19/ABI/CONUS/GEOCOLOR/1250x750.jpg",
   ],
   [
     "LIGHTNING",
     "https://images.lightningmaps.org/blitzortung/america/index.php?animation=usa",
   ],
   [
-    "LIGHTNING LOCAL",
-    "https://www.blitzortung.org/en/Images/image_b_ny.png",
+    "LIGHTNING OK",
+    "iframe|https://map.blitzortung.org/#7/36.31/-95.62",
   ],
   ["YOUTUBE EXAMPLE", "iframe|https://www.youtube.com/embed/fzPFaXAV_2Y?autoplay=1&mute=1"],
   [
     "WEBSITE EXAMPLE",
-    "iframe|https://globe.adsbexchange.com/?airport=YYZ",
+    "iframe|https://globe.adsbexchange.com/?airport=TUL",
   ],
   ["VIDEO EXAMPLE", "https://himawari8.nict.go.jp/movie/720/20240611_pifd.mp4"],
   ["HF PROPAGATION",
