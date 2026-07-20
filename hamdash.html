@@ -1706,9 +1706,15 @@ var tileDelay = ${JSON.stringify(settings.aImages.map(item => item[2]), null, 2)
         document.getElementById("settingsPage").style.display = "none";
         setRot();
       } else {
+        var src = aURL[num][2];
+        // "newtab|" prefix opens the link in a new browser tab (for sites that refuse to be framed)
+        if (src.startsWith("newtab|")) {
+          window.open(src.replace("newtab|", ""), "_blank");
+          setRot();
+          return;
+        }
         document.getElementById("iFrameContainer").style.zIndex = 1;
         document.getElementById("FullScreen").style.display = "block";
-        var src = aURL[num][2];
         if (isDark(src)) {
           document.getElementById("FullScreen").style.filter = "invert(1) hue-rotate(180deg)";
           src = src.replace("dark|", "");

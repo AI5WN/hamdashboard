@@ -13,7 +13,7 @@ var layout_rows = 3;
 var aURL = [
   ["f3de21", "SATS", "satellite.js"],
 
-  ["f3de21", "HAMCLOCK", "https://openhamclock.com/", "1"],
+  ["f3de21", "HAMCLOCK", "newtab|https://openhamclock.com/", "1"],
 
   ["2196F3", "CLUBLOG", "https://clublog.org/livestream/AI5WN", "1.7"],
   [
@@ -30,7 +30,8 @@ var aURL = [
     "1",
     "R",
   ],
-  ["2196F3", "PISTAR", "http://pi-star.local/", "1.2"],
+  ["2196F3", "PSKREP", "https://pskreporter.info/pskmap.html", "1"],
+  ["2196F3", "RBN", "https://www.reversebeacon.net/main.php", "1"],
   [
     "2196F3",
     "RADAR",
@@ -91,12 +92,12 @@ var aIMG = [
     "LIGHTNING OK",
     "iframe|https://map.blitzortung.org/#7/36.31/-95.62",
   ],
-  ["YOUTUBE EXAMPLE", "iframe|https://www.youtube.com/embed/fzPFaXAV_2Y?autoplay=1&mute=1"],
+  ["TULSA LIVE CAM", "iframe|https://www.youtube.com/embed/e2ZyeZPTbU0?autoplay=1&mute=1"],
   [
-    "WEBSITE EXAMPLE",
+    "PLANES OVER TULSA",
     "iframe|https://globe.adsbexchange.com/?airport=TUL",
   ],
-  ["VIDEO EXAMPLE", "https://himawari8.nict.go.jp/movie/720/20240611_pifd.mp4"],
+  ["SPACE WEATHER 3-DAY", "https://services.swpc.noaa.gov/images/swx-overview-large.gif"],
   ["HF PROPAGATION",
     "https://www.hamqsl.com/solar101vhf.php"],
 ];
