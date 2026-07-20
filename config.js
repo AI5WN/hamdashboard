@@ -14,11 +14,12 @@ var aURL = [
   ["f3de21", "OK WX", "satellite.js"],
   ["f3de21", "MAUI", "maui.js"],
   ["f3de21", "ESTES", "estes.js"],
+  ["f3de21", "PCOLA", "pcola.js"],
   ["f3de21", "HAMCLOCK", "newtab|https://openhamclock.com/", "1"],
 
   ["4CAF50", "APRS", "https://aprs.fi/#!mt=roadmap&z=11&lat=36.2893&lng=-95.6234", "1"],
   ["4CAF50", "POTA", "newtab|https://pota.app/#/map", "1"],
-  ["4CAF50", "ISS TRACK", "https://iss.astroviewer.net/", "1"],
+  ["4CAF50", "ISS TRACK", "https://www.n2yo.com/?s=25544&live=1", "1"],
   ["9C27B0", "RCWA", "https://www.rcwa.org/", "1", "R"],
   ["9C27B0", "LICW", "https://longislandcwclub.org/", "1", "R"],
 
