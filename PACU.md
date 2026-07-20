@@ -44,7 +44,9 @@ are per-TV (saved in that browser).
 
 **Menu buttons** (slide out from the screen edges)
 - Left: **MAUI**, **ESTES PARK**, **PENSACOLA**, **CLEARWATER OR**,
-  **NAVARRE FL** — the getaway pages — plus a full-screen **JELLY CAM**
+  **NAVARRE FL** — the getaway pages — plus **NEWS/WX** (Tulsa news, radar,
+  warnings, traffic), **FUNNY TV** (AFV/FailArmy playlists), and a
+  full-screen **JELLY CAM**
 - Right: Tulsa radar, regional weather map, and the standard engine options
   (BACK, Refresh, Setup, Sources)
 
@@ -61,6 +63,8 @@ webcams:
 | Pensacola | `pacu_pcola.js` | 3 Pensacola Beach cams, Navarre Pier, Mobile radar/NHC outlook/GOES |
 | Clearwater OR | `pacu_clearwater.js` | Clearwater Restaurant sea lion cam (Newport, OR), OSU Port Dock 1 cam, Pacific winds, Portland radar, GOES-18 |
 | Navarre Beach | `pacu_navarre.js` | Navarre Pier (2 streams), Navarre Beach Life 4K, Pensacola Beach, Mobile radar/NHC, GOES-19 |
+| News/WX | `pacu_news.js` | KJRH 2 News live, Windy interactive radar, OK warnings map/SPC outlook, ODOT traffic map, KJRH tower cams |
+| Funny TV | `pacu_funny.js` | 2×2 big tiles: AFV uploads, Totally Funny Animals, FailArmy pet fails, Best-of-FailArmy loop (auto-advancing playlists) |
 
 **BACK** (either edge) returns to the main PACU screen. Pages stay put until
 someone navigates away (no auto-return).
