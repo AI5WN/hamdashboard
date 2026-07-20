@@ -30,6 +30,8 @@ var aURL = [
   ["00a5ad", "MAUI", "pacu_maui.js"],
   ["00a5ad", "ESTES PARK", "pacu_estes.js"],
   ["00a5ad", "PENSACOLA", "pacu_pcola.js"],
+  ["00a5ad", "CLEARWATER OR", "pacu_clearwater.js"],
+  ["00a5ad", "NAVARRE FL", "pacu_navarre.js"],
 
   ["9C27B0", "JELLY CAM", "https://www.youtube.com/embed/NUnJc82ptd4?autoplay=1&mute=1&playsinline=1&rel=0", "1"],
 
