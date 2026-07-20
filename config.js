@@ -13,11 +13,12 @@ var layout_rows = 3;
 var aURL = [
   ["f3de21", "OK WX", "satellite.js"],
   ["f3de21", "MAUI", "maui.js"],
+  ["f3de21", "ESTES", "estes.js"],
   ["f3de21", "HAMCLOCK", "newtab|https://openhamclock.com/", "1"],
 
   ["4CAF50", "APRS", "https://aprs.fi/#!mt=roadmap&z=11&lat=36.2893&lng=-95.6234", "1"],
   ["4CAF50", "POTA", "newtab|https://pota.app/#/map", "1"],
-  ["4CAF50", "NETLOGGER", "https://www.netlogger.org/", "1"],
+  ["4CAF50", "ISS TRACK", "https://iss.astroviewer.net/", "1"],
   ["9C27B0", "RCWA", "https://www.rcwa.org/", "1", "R"],
   ["9C27B0", "LICW", "https://longislandcwclub.org/", "1", "R"],
 
@@ -79,8 +80,8 @@ var aIMG = [
     "https://prop.kc2g.com/renders/current/mufd-normal-now.svg",
   ],
   [
-    "ISS POSITION",
-    "https://www.heavens-above.com/orbitdisplay.aspx?icon=iss&width=600&height=300&mode=M&satid=25544",
+    "ISS LIVE CAM",
+    "iframe|https://www.youtube.com/embed/OKQEMp2555A?autoplay=1&mute=1",
   ],
   [
     "GOES S. PLAINS",
@@ -120,9 +121,9 @@ var aIMG = [
 
 // Image rotation intervals in milliseconds per tile - If the line below is commented, all tiles will be rotated every 30000 milliseconds (30s)
 var tileDelay = [
-  11200,10000,11000,10100,
+  11200,10000,11000,86400000,
   10200,10500,10300,10600,
-  30400,60700,60900,10800
+  30400,86400000,60900,10800
 ];
 
 // RSS feed items

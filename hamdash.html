@@ -1699,11 +1699,20 @@ var tileDelay = ${JSON.stringify(settings.aImages.map(item => item[2]), null, 2)
           .open("https://github.com/VA3HDL/hamdashboard/releases/", "_blank")
           .focus();
       } else if (menuText.toLowerCase() == "back") {
+        // If an embedded site is open, BACK closes it; otherwise, on a
+        // sub-page (?config=...), BACK navigates to the previous config page
+        const wasViewingSite =
+          document.getElementById("FullScreen").style.display === "block" ||
+          document.getElementById("settingsPage").style.display === "block";
         document.getElementById("FullScreen").src = "about:blank";
         document.getElementById("iFrameContainer").style.zIndex = -2;
         document.getElementById("iFrameContainer").style.backgroundColor = "black";
         document.getElementById("FullScreen").style.display = "none";
         document.getElementById("settingsPage").style.display = "none";
+        if (!wasViewingSite && new URLSearchParams(window.location.search).get("config")) {
+          window.location.href = buildPreviousUrl();
+          return;
+        }
         setRot();
       } else {
         var src = aURL[num][2];
