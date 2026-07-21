@@ -35,6 +35,7 @@ var aURL = [
   ["e8a03c", "NEWS/WX", "pacu_news.js"],
   ["e8a03c", "FUNNY TV", "pacu_funny.js"],
   ["e8a03c", "CARINI", "pacu_carini.js"],
+  ["d32f2f", "NIGHT SHIFT", "pacu_night.js"],
 
   ["9C27B0", "JELLY CAM", "pacu_jelly.js"],
 
