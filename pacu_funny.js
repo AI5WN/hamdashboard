@@ -21,9 +21,7 @@ var layout_rows = 2;
 // Menu items
 // Structure is [HTML color code, menu text, target URL, scale, side ("R" = right)]
 var aURL = [
-  ["9C27B0", "JELLY CAM", "https://www.youtube.com/embed/IYG9fnz40-E?autoplay=1&mute=1&playsinline=1&rel=0", "1"],
-  ["9C27B0", "MOON JELLIES", "https://www.youtube.com/embed/7N9-FODmuBA?autoplay=1&mute=1&playsinline=1&rel=0", "1"],
-  ["9C27B0", "MBA JELLIES", "https://www.youtube.com/embed/m1XcdxjVGos?autoplay=1&mute=1&playsinline=1&rel=0", "1"],
+  ["9C27B0", "JELLY CAM", "pacu_jelly.js"],
 ];
 
 // Dashboard tiles (2 cols x 2 rows = 4 big tiles)
