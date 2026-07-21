@@ -36,7 +36,7 @@ var aURL = [
   ["e8a03c", "FUNNY TV", "pacu_funny.js"],
   ["e8a03c", "CARINI", "pacu_carini.js"],
 
-  ["9C27B0", "JELLY CAM", "https://www.youtube.com/embed/IYG9fnz40-E?autoplay=1&mute=1&playsinline=1&rel=0", "1"],
+  ["9C27B0", "JELLY CAM", "pacu_jelly.js"],
 
   [
     "2196F3",
@@ -89,19 +89,14 @@ var aIMG = [
     "iframe|https://www.youtube.com/embed/UKkc40WQm0c?autoplay=1&mute=1&playsinline=1&rel=0",
     "iframe|https://www.youtube.com/embed/YHsUGV70rOY?autoplay=1&mute=1&playsinline=1&rel=0",
   ],
-  // 5 - Alligators / sharks / jellies, rotating every 10 minutes
-  //     (right-click to skip a dead stream; shark week ready)
+  // 5 - Alligators / sharks, rotating every 10 minutes (shark week ready)
   [
     [
       "ST. AUGUSTINE ALLIGATOR FARM",
       "SHARK LAGOON - AQUARIUM OF THE PACIFIC",
-      "SHARK LAGOON - ALT STREAM",
-      "JELLYFISH - AQUARIUM OF THE PACIFIC",
     ],
     "iframe|https://www.youtube.com/embed/LHtzZf4T7xw?autoplay=1&mute=1&playsinline=1&rel=0",
-    "iframe|https://www.youtube.com/embed/BLvr4K2eiRE?autoplay=1&mute=1&playsinline=1&rel=0",
-    "iframe|https://www.youtube.com/embed/9NZ01nUcrrU?autoplay=1&mute=1&playsinline=1&rel=0",
-    "iframe|https://www.youtube.com/embed/IYG9fnz40-E?autoplay=1&mute=1&playsinline=1&rel=0",
+    "iframe|https://www.youtube.com/embed/YT7lH6U68S4?autoplay=1&mute=1&playsinline=1&rel=0",
   ],
   // 6 - Local: Tulsa radar + KJRH skyline cams + GOES satellite, rotating
   [
