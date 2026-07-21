@@ -85,7 +85,7 @@ var CAM = {
   templeBar: "iframe|https://www.youtube.com/embed/3nyPER2kzqk?autoplay=1&mute=1&playsinline=1&rel=0",
   templeBarAlt: "iframe|https://www.youtube.com/embed/RtXT86TnXIU?autoplay=1&mute=1&playsinline=1&rel=0",
   prague: "iframe|https://www.youtube.com/embed/0FvTdT3EJY4?autoplay=1&mute=1&playsinline=1&rel=0",
-  eiffel: "iframe|https://www.youtube.com/embed/iZipA1LL_sU?autoplay=1&mute=1&playsinline=1&rel=0",
+  eiffel: "iframe|https://www.youtube.com/embed/EFum1rGUdkk?autoplay=1&mute=1&playsinline=1&rel=0",
   vegas: "iframe|https://www.youtube.com/embed/_XJa-HI33ss?autoplay=1&mute=1&playsinline=1&rel=0",
   vegasAlt: "iframe|https://www.youtube.com/embed/mmSKBT_nTfY?autoplay=1&mute=1&playsinline=1&rel=0",
   fremont: "iframe|https://www.youtube.com/embed/ZvYvZLfPatQ?autoplay=1&mute=1&playsinline=1&rel=0",
