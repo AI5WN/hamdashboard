@@ -22,9 +22,9 @@ var topBarCenterText = "St. Francis PACU - Night Shift";
 // entries are shared browser-wide and editable from any page)
 var showStaffBar = true;
 
-// Grid layout desired
+// Grid layout desired (3x3 = all nine places at once)
 var layout_cols = 3;
-var layout_rows = 2;
+var layout_rows = 3;
 
 // Menu items
 // Structure is [HTML color code, menu text, target URL, scale, side ("R" = right)]
@@ -77,13 +77,20 @@ setInterval(function () { window.location.reload(); }, 60 * 60 * 1000);
 // (YouTube live IDs change when a stream restarts), right-click the tile
 // for its alternate, and update the ID here from the channel's /streams page.
 var CAM = {
+  // veniceCanal + templeBar IDs were confirmed live by the night crew
+  veniceCanal: "iframe|https://www.youtube.com/embed/r8N6IsoIkTk?autoplay=1&mute=1&playsinline=1&rel=0",
   veniceRialto: "iframe|https://www.youtube.com/embed/Kmf_wiTFuXY?autoplay=1&mute=1&playsinline=1&rel=0",
   veniceRialtoAlt: "iframe|https://www.youtube.com/embed/CMn6xQXuSjI?autoplay=1&mute=1&playsinline=1&rel=0",
-  veniceCanal: "iframe|https://www.youtube.com/embed/lFQ_BvxIcnI?autoplay=1&mute=1&playsinline=1&rel=0",
   abbeyRoad: "iframe|https://www.youtube.com/embed/M3EYAY2MftI?autoplay=1&mute=1&playsinline=1&rel=0",
-  templeBar: "iframe|https://www.youtube.com/embed/RtXT86TnXIU?autoplay=1&mute=1&playsinline=1&rel=0",
-  templeBarPub: "iframe|https://www.youtube.com/embed/wWkhtgErj_E?autoplay=1&mute=1&playsinline=1&rel=0",
+  templeBar: "iframe|https://www.youtube.com/embed/3nyPER2kzqk?autoplay=1&mute=1&playsinline=1&rel=0",
+  templeBarAlt: "iframe|https://www.youtube.com/embed/RtXT86TnXIU?autoplay=1&mute=1&playsinline=1&rel=0",
   prague: "iframe|https://www.youtube.com/embed/0FvTdT3EJY4?autoplay=1&mute=1&playsinline=1&rel=0",
+  eiffel: "iframe|https://www.youtube.com/embed/iZipA1LL_sU?autoplay=1&mute=1&playsinline=1&rel=0",
+  vegas: "iframe|https://www.youtube.com/embed/_XJa-HI33ss?autoplay=1&mute=1&playsinline=1&rel=0",
+  vegasAlt: "iframe|https://www.youtube.com/embed/mmSKBT_nTfY?autoplay=1&mute=1&playsinline=1&rel=0",
+  fremont: "iframe|https://www.youtube.com/embed/ZvYvZLfPatQ?autoplay=1&mute=1&playsinline=1&rel=0",
+  timesSquare: "iframe|https://www.youtube.com/embed/Q0uLV52xGZE?autoplay=1&mute=1&playsinline=1&rel=0",
+  timesSquareAlt: "iframe|https://www.youtube.com/embed/z-jYdOIKcTQ?autoplay=1&mute=1&playsinline=1&rel=0",
   okaukuejo: "iframe|https://www.youtube.com/embed/AeMUdOPFcXI?autoplay=1&mute=1&playsinline=1&rel=0",
   okaukuejoAlt: "iframe|https://www.youtube.com/embed/JMMoRwYo5kE?autoplay=1&mute=1&playsinline=1&rel=0",
   namibDesert: "iframe|https://www.youtube.com/embed/ydYDqZQpim8?autoplay=1&mute=1&playsinline=1&rel=0",
@@ -93,18 +100,20 @@ var CAM = {
 
 var aIMG;
 if (nightBand === "day") {
-  // Europe morning + African waterholes in daylight
+  // Europe morning + African waterholes in daylight + the cities that
+  // never turn their lights off
   aIMG = [
     [
-      ["VENICE - RIALTO BRIDGE", "VENICE - RIALTO (ALT)", "VENICE - GRAND CANAL"],
-      CAM.veniceRialto, CAM.veniceRialtoAlt, CAM.veniceCanal,
+      ["VENICE - GRAND CANAL", "VENICE - RIALTO BRIDGE", "VENICE - RIALTO (ALT)"],
+      CAM.veniceCanal, CAM.veniceRialto, CAM.veniceRialtoAlt,
     ],
     ["LONDON - ABBEY ROAD CROSSING", CAM.abbeyRoad],
     [
-      ["DUBLIN - TEMPLE BAR", "DUBLIN - TEMPLE BAR PUB"],
-      CAM.templeBar, CAM.templeBarPub,
+      ["DUBLIN - TEMPLE BAR", "DUBLIN - TEMPLE BAR (ALT)"],
+      CAM.templeBar, CAM.templeBarAlt,
     ],
     ["PRAGUE - OLD TOWN", CAM.prague],
+    ["PARIS - EIFFEL TOWER", CAM.eiffel],
     [
       ["ETOSHA - OKAUKUEJO WATERHOLE", "OKAUKUEJO - ALT STREAM"],
       CAM.okaukuejo, CAM.okaukuejoAlt,
@@ -113,20 +122,30 @@ if (nightBand === "day") {
       ["NAMIB DESERT WATERHOLE", "NAMIB WATERHOLE - ALT", "TEMBE ELEPHANTS - SOUTH AFRICA"],
       CAM.namibDesert, CAM.namibDesertAlt, CAM.tembe,
     ],
+    [
+      ["LAS VEGAS STRIP", "LAS VEGAS STRIP (ALT)", "FREMONT STREET - VEGAS"],
+      CAM.vegas, CAM.vegasAlt, CAM.fremont,
+    ],
+    [
+      ["NYC - TIMES SQUARE (EARTHCAM 4K)", "TIMES SQUARE - CROSSROADS"],
+      CAM.timesSquare, CAM.timesSquareAlt,
+    ],
   ];
 } else {
-  // Europe city lights + floodlit / infrared waterholes
+  // Europe city lights + floodlit / infrared waterholes + Vegas and
+  // Times Square in full glow
   aIMG = [
     [
-      ["VENICE BY NIGHT - RIALTO", "VENICE BY NIGHT (ALT)", "VENICE - GRAND CANAL"],
-      CAM.veniceRialto, CAM.veniceRialtoAlt, CAM.veniceCanal,
+      ["VENICE BY NIGHT - GRAND CANAL", "VENICE BY NIGHT - RIALTO", "VENICE - RIALTO (ALT)"],
+      CAM.veniceCanal, CAM.veniceRialto, CAM.veniceRialtoAlt,
     ],
     ["LONDON BY NIGHT - ABBEY ROAD", CAM.abbeyRoad],
     [
-      ["DUBLIN - TEMPLE BAR LIGHTS", "DUBLIN - TEMPLE BAR PUB"],
-      CAM.templeBar, CAM.templeBarPub,
+      ["DUBLIN - TEMPLE BAR LIGHTS", "DUBLIN - TEMPLE BAR (ALT)"],
+      CAM.templeBar, CAM.templeBarAlt,
     ],
     ["PRAGUE BY NIGHT - OLD TOWN", CAM.prague],
+    ["PARIS - EIFFEL TOWER LIGHTS", CAM.eiffel],
     [
       ["ETOSHA - FLOODLIT OKAUKUEJO WATERHOLE", "OKAUKUEJO - ALT STREAM"],
       CAM.okaukuejo, CAM.okaukuejoAlt,
@@ -135,13 +154,23 @@ if (nightBand === "day") {
       ["TEMBE ELEPHANTS - NIGHT CAM", "NAMIB DESERT WATERHOLE"],
       CAM.tembe, CAM.namibDesert,
     ],
+    [
+      ["LAS VEGAS STRIP - LIT", "LAS VEGAS STRIP (ALT)", "FREMONT STREET - VEGAS"],
+      CAM.vegas, CAM.vegasAlt, CAM.fremont,
+    ],
+    [
+      ["NYC - TIMES SQUARE LIGHTS (4K)", "TIMES SQUARE - CROSSROADS"],
+      CAM.timesSquare, CAM.timesSquareAlt,
+    ],
   ];
 }
 
 // Image rotation intervals in milliseconds per tile (static; right-click
 // flips alternates, and the hourly reload handles the band change)
 var tileDelay = [
-  86400000, 86400000, 86400000, 86400000, 86400000, 86400000,
+  86400000, 86400000, 86400000,
+  86400000, 86400000, 86400000,
+  86400000, 86400000, 86400000,
 ];
 
 var aRSS = [
