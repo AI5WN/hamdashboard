@@ -66,6 +66,7 @@ webcams:
 | News/WX | `pacu_news.js` | KJRH 2 News live, Windy interactive radar, OK warnings map/SPC outlook, ODOT traffic map, KJRH tower cams |
 | Funny TV | `pacu_funny.js` | 2×2 big tiles: AFV uploads, Totally Funny Animals, FailArmy pet fails, Best-of-FailArmy loop (auto-advancing playlists) |
 | Carini | `pacu_carini.js` | 2×2 big tiles of looping BJJ technique playlists: Chewjitsu, Gracie Breakdown, Jordan Teaches Jiujitsu, Jiu-Jitsu Channel |
+| Night Shift | `pacu_night.js` | Follow-the-sun world cams for the 2030–0700 crew: Venice, Abbey Road, Temple Bar, Prague + Etosha/Namib waterholes. Picks the currently-lit set (daylight vs city-lights/floodlit) from Oklahoma time and reloads hourly; force with `&band=day` or `&band=night` |
 
 **BACK** (either edge) returns to the main PACU screen. Pages stay put until
 someone navigates away (no auto-return).
