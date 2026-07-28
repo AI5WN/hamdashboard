@@ -1477,7 +1477,12 @@ var tileDelay = ${JSON.stringify(settings.aImages.map(item => item[2]), null, 2)
 
     function loadScriptConfig(url, fallback) {
       const script = document.createElement("script");
-      script.src = url;
+      // Cache-bust the same way loadJsonConfig() does. Without this the TV
+      // browser keeps serving a stale copy of pacu.js / pacu_*.js, so edits
+      // pushed to the server never appear on screen even after a reload -
+      // the page's no-cache <meta> tags only cover the HTML document, not
+      // its subresources.
+      script.src = url + (url.includes("?") ? "&" : "?") + "_=" + Date.now();
       script.onload = async () => {
         console.log(`${url} loaded successfully (script)`);
 
@@ -1628,6 +1633,17 @@ var tileDelay = ${JSON.stringify(settings.aImages.map(item => item[2]), null, 2)
 
     async function main() {
       try {
+        // An explicit ?config=<file> means the operator navigated to a
+        // specific page (NIGHT SHIFT, MAUI, ...). That always wins over
+        // whatever this browser happens to have saved, otherwise a stored
+        // config silently pins every page to the main dashboard.
+        const explicitConfig = new URLSearchParams(window.location.search).get("config");
+        if (explicitConfig) {
+          console.log(`Explicit ?config=${explicitConfig} - loading from file`);
+          loadConfig();
+          return;
+        }
+
         // Check if settings exist in localStorage
         const settings = localStorage.getItem('pacudash_config');
         if (settings) {
