@@ -12,6 +12,10 @@
 //     Etosha's famous floodlit Okaukuejo waterhole (rhino and elephant
 //     visit it after dark)
 //
+// The Asia-Pacific tile (Tokyo/Sydney/Hong Kong) keeps the same title in
+// both sets on purpose: Tokyo runs ~14 hours ahead of Oklahoma, so it is
+// already mid-afternoon-to-neon-evening there for most of the shift.
+//
 // Force a set for testing or preference by adding &band=day or &band=night
 // to the page URL. Right-click any tile for its alternate stream.
 const disableSetup = false;
@@ -85,7 +89,16 @@ var CAM = {
   templeBar: "iframe|https://www.youtube.com/embed/3nyPER2kzqk?autoplay=1&mute=1&playsinline=1&rel=0",
   templeBarAlt: "iframe|https://www.youtube.com/embed/RtXT86TnXIU?autoplay=1&mute=1&playsinline=1&rel=0",
   prague: "iframe|https://www.youtube.com/embed/0FvTdT3EJY4?autoplay=1&mute=1&playsinline=1&rel=0",
-  eiffel: "iframe|https://www.youtube.com/embed/EFum1rGUdkk?autoplay=1&mute=1&playsinline=1&rel=0",
+  // Asia-Pacific slot (replaced the Eiffel Tower cam, which went offline).
+  // Tokyo is 14 hours ahead of Oklahoma, so this tile runs Tokyo afternoon
+  // through neon evening for most of the 2030-0700 shift - it never goes
+  // dark and never needs a band swap. Right-click cycles Shibuya street
+  // level -> Shibuya backup angle -> Sydney Harbour -> Hong Kong skyline.
+  // Another good Tokyo option if these die: 3Q5wZeTuttw (Shibuya Sky roof).
+  shibuya: "iframe|https://www.youtube.com/embed/tujkoXI8rWM?autoplay=1&mute=1&playsinline=1&rel=0",
+  shibuyaAlt: "iframe|https://www.youtube.com/embed/dfVK7ld38Ys?autoplay=1&mute=1&playsinline=1&rel=0",
+  sydneyHarbour: "iframe|https://www.youtube.com/embed/7pcL-0Wo77U?autoplay=1&mute=1&playsinline=1&rel=0",
+  hongKongPeak: "iframe|https://www.youtube.com/embed/bNOWG3jcOlQ?autoplay=1&mute=1&playsinline=1&rel=0",
   vegas: "iframe|https://www.youtube.com/embed/_XJa-HI33ss?autoplay=1&mute=1&playsinline=1&rel=0",
   vegasAlt: "iframe|https://www.youtube.com/embed/mmSKBT_nTfY?autoplay=1&mute=1&playsinline=1&rel=0",
   fremont: "iframe|https://www.youtube.com/embed/ZvYvZLfPatQ?autoplay=1&mute=1&playsinline=1&rel=0",
@@ -113,7 +126,10 @@ if (nightBand === "day") {
       CAM.templeBar, CAM.templeBarAlt,
     ],
     ["PRAGUE - OLD TOWN", CAM.prague],
-    ["PARIS - EIFFEL TOWER", CAM.eiffel],
+    [
+      ["TOKYO - SHIBUYA SCRAMBLE CROSSING", "TOKYO - SHIBUYA (ALT ANGLE)", "SYDNEY - HARBOUR BRIDGE & OPERA HOUSE", "HONG KONG - VICTORIA HARBOUR FROM THE PEAK"],
+      CAM.shibuya, CAM.shibuyaAlt, CAM.sydneyHarbour, CAM.hongKongPeak,
+    ],
     [
       ["ETOSHA - OKAUKUEJO WATERHOLE", "OKAUKUEJO - ALT STREAM"],
       CAM.okaukuejo, CAM.okaukuejoAlt,
@@ -145,7 +161,10 @@ if (nightBand === "day") {
       CAM.templeBar, CAM.templeBarAlt,
     ],
     ["PRAGUE BY NIGHT - OLD TOWN", CAM.prague],
-    ["PARIS - EIFFEL TOWER LIGHTS", CAM.eiffel],
+    [
+      ["TOKYO - SHIBUYA SCRAMBLE CROSSING", "TOKYO - SHIBUYA (ALT ANGLE)", "SYDNEY - HARBOUR BRIDGE & OPERA HOUSE", "HONG KONG - VICTORIA HARBOUR FROM THE PEAK"],
+      CAM.shibuya, CAM.shibuyaAlt, CAM.sydneyHarbour, CAM.hongKongPeak,
+    ],
     [
       ["ETOSHA - FLOODLIT OKAUKUEJO WATERHOLE", "OKAUKUEJO - ALT STREAM"],
       CAM.okaukuejo, CAM.okaukuejoAlt,
