@@ -1,0 +1,87 @@
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>PACU cam test bench</title>
+<style>
+  body { margin: 0; padding: 16px; background: #111; color: #eee;
+         font: 14px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  h1 { font-size: 18px; margin: 0 0 4px; }
+  p.note { color: #bbb; max-width: 70ch; margin: 0 0 16px; }
+  h2 { font-size: 14px; letter-spacing: .08em; text-transform: uppercase;
+       color: #7fb3ff; border-bottom: 1px solid #333; padding-bottom: 4px;
+       margin: 22px 0 10px; }
+  .grid { display: grid; gap: 14px;
+          grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+  .cam { background: #1b1b1b; border: 1px solid #333; border-radius: 6px;
+         overflow: hidden; }
+  .cam.control { border-color: #4c8f4c; }
+  .frame { position: relative; padding-top: 56.25%; background: #000; }
+  .frame iframe { position: absolute; inset: 0; width: 100%; height: 100%;
+                  border: 0; }
+  .label { padding: 7px 9px; }
+  .label b { display: block; font-size: 13px; }
+  .label span { color: #999; font-size: 12px; }
+  .label a { color: #7fb3ff; font-size: 12px; }
+</style>
+
+<h1>PACU cam test bench</h1>
+<p class="note">
+  Each tile below is a real iframe embed, exactly like a dashboard tile, served
+  from this same host so the browser sends a proper referrer. Whatever plays
+  here will play on the dashboard; whatever shows an error here is genuinely
+  unusable and needs replacing. Do <em>not</em> judge a stream by pasting an
+  <code>/embed/</code> URL into the address bar &mdash; that sends no referrer
+  and fails with "Error 153" even for streams that embed fine.
+  The green-bordered control is a cam already working on the board: if it plays
+  and others do not, the others are the problem, not the network.
+</p>
+
+<div id="out"></div>
+
+<script>
+  // [section, label, video id]
+  const CAMS = [
+    ["Control (known good)", "NYC - Times Square (already on the board)", "Q0uLV52xGZE", true],
+    ["Control (known good)", "London - Abbey Road (already on the board)", "M3EYAY2MftI", true],
+
+    ["Tokyo", "Shibuya Crossing - ANN / TV Asahi (current tile primary)", "tujkoXI8rWM"],
+    ["Tokyo", "Shibuya Crossing - FNN (current tile alt 1)", "dfVK7ld38Ys"],
+    ["Tokyo", "Shibuya Sky rooftop view", "3Q5wZeTuttw"],
+    ["Tokyo", "Shibuya Crossing - AI cam", "pM_NifRh0RQ"],
+
+    ["Sydney", "Harbour Bridge + Opera House, PTZ (current tile alt 2)", "7pcL-0Wo77U"],
+    ["Sydney", "Harbour Bridge + Opera House, static", "SEg0VujJiFU"],
+    ["Sydney", "WebcamSydney harbour", "5uZa3-RMFos"],
+
+    ["Hong Kong", "Victoria Harbour from The Peak (current tile alt 3)", "bNOWG3jcOlQ"],
+    ["Hong Kong", "Victoria Harbour - earthTV", "qLogxA4vi_s"],
+
+    ["Dubai", "Downtown Dubai / Burj Khalifa 24/7", "xKYvWgyxXXg"],
+    ["Dubai", "Dubai Marina - SkylineWebcams", "MfIpyflPbHQ"],
+  ];
+
+  const out = document.getElementById("out");
+  let current = null;
+  for (const [section, label, id, isControl] of CAMS) {
+    if (section !== current) {
+      current = section;
+      const h = document.createElement("h2");
+      h.textContent = section;
+      out.appendChild(h);
+      var grid = document.createElement("div");
+      grid.className = "grid";
+      out.appendChild(grid);
+    }
+    const cam = document.createElement("div");
+    cam.className = "cam" + (isControl ? " control" : "");
+    cam.innerHTML =
+      '<div class="frame"><iframe allow="autoplay; encrypted-media" ' +
+      'allowfullscreen src="https://www.youtube.com/embed/' + id +
+      '?autoplay=1&mute=1&playsinline=1&rel=0"></iframe></div>' +
+      '<div class="label"><b></b><span></span> &middot; ' +
+      '<a target="_blank" href="https://www.youtube.com/watch?v=' + id +
+      '">open on YouTube</a></div>';
+    cam.querySelector("b").textContent = label;
+    cam.querySelector("span").textContent = id;
+    grid.appendChild(cam);
+  }
+</script>

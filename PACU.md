@@ -91,6 +91,17 @@ tile shows a dead player:
 Tips: right-click a tile to flip to its alternate cam; double-click a tile to
 unlock the player for interaction (double-click images to zoom instead).
 
+### Testing a candidate stream
+
+Open `camtest.html` on the dashboard host. It embeds candidate streams as real
+iframes alongside two cams known to work, so anything that plays there will
+play on the board.
+
+Do **not** test a stream by pasting `https://www.youtube.com/embed/VIDEO_ID`
+into a browser address bar. Loaded that way the browser sends no referrer and
+YouTube answers "Error 153 - video player configuration error" even for streams
+that embed perfectly well. The error says nothing about the stream.
+
 ## Engine notes
 
 - `pacudash.html` is the hamdash engine with: 24-hour banner clock + date,
